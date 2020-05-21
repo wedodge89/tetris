@@ -1,2 +1,2 @@
 # tetris
-Refreshing my JavaScript skills by creating a Tetris clone. 
+This project started with FreeCodeCamp's 
