@@ -67,4 +67,94 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    //set timer for move down
+    timerId = setInterval(moveDown, 1000);
+
+    //controls
+    function control(e) {
+        switch (e.keyCode) {
+            case 37:
+                moveLeft()
+                break;
+            
+            case 39:
+                moveRight()
+                break;
+            
+            case 38:
+                rotateTetromino()
+                break;
+
+            // case 40:
+            //     moveDown()
+            //     break;
+        }
+        
+        // if(e.keyCode === 37) {
+        //     moveLeft();
+        // };
+    };
+    document.addEventListener("keyup", control)
+    
+    //move down function
+    function moveDown() {
+        undraw();
+        currentPosition += width;
+        draw();
+        freeze();
+    }
+
+    //freeze function
+    function freeze() {
+        if (current.some(index => squares[currentPosition + index + width].classList.contains("taken"))) {
+            current.forEach(index => squares[currentPosition + index].classList.add("taken"));
+            randNum = Math.floor(Math.random() * theTetrominoes.length);
+            current = theTetrominoes[randNum][currentRotation];
+            currentPosition = 4;
+            draw();
+        };
+    };
+
+    //move left, unless too far left to do so
+    function moveLeft() {
+        undraw();
+        const isAtLeftEdge = current.some(index => (currentPosition + index) % width === 0);
+
+        if (!isAtLeftEdge) currentPosition -= 1
+
+        if(current.some(index => squares[currentPosition + index].classList.contains("taken"))) {
+            currentPosition += 1
+        };
+
+        draw();
+    };
+
+    //move right, unless too far right to do so
+    function moveRight() {
+        undraw();
+        const isAtRightEdge = current.some(index => (currentPosition + index) % width === width - 1);
+
+        if (!isAtRightEdge) currentPosition += 1
+
+        if(current.some(index => squares[currentPosition + index].classList.contains("taken"))) {
+            currentPosition -= 1
+        };
+
+        draw();
+    };
+
+    //rotate the tetromino
+    function rotateTetromino() {
+        undraw();
+        currentRotation ++;
+
+        //return to first rotation at the end of cycle
+        if(currentRotation === current.length) {
+            currentRotation = 0;
+        }
+        current = theTetrominoes[randNum][currentRotation]
+
+        draw();
+    }
+
 });
