@@ -19,10 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // The Tetrominoes
     const lTetromino = [
         [1, width + 1, width * 2 + 1, 2],
-        [width, width + 1, width * 2, width * 3],
+        [width, width + 1, width + 2, width * 2 + 2],
         [1, width + 1, width * 2 + 1, width * 2],
         [width, width * 2, width * 2 + 1, width * 2 + 2]
-    ];
+      ]
 
     const zTetromino = [
         [0, width, width + 1, width * 2 + 1],
@@ -111,10 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
     //freeze function
     function freeze() {
         if (current.some(index => squares[currentPosition + index + width].classList.contains("taken"))) {
+            //stop current piece
             current.forEach(index => squares[currentPosition + index].classList.add("taken"));
-            randNum = Math.floor(Math.random() * theTetrominoes.length);
-            current = theTetrominoes[randNum][currentRotation];
+            //start new piece
+            randNum = nextRandNum;
             nextRandNum = Math.floor(Math.random() * theTetrominoes.length);
+            current = theTetrominoes[randNum][currentRotation];
             currentPosition = 4;
             draw();
             displayShape();
@@ -181,15 +183,17 @@ document.addEventListener('DOMContentLoaded', () => {
         //oTetromino
         [0, 1, displayWidth, displayWidth + 1],
         //iTetromino
-        [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1]//iTetromino
+        [1, displayWidth + 1, displayWidth * 2 + 1, displayWidth * 3 + 1]
     ];
 
     //show shape in mini-grid
     function displayShape() {
+        //remove previous shape
         displaySquares.forEach(square => {
             square.classList.remove("tetromino");
             square.style.backgroundColor = "";
         });
+        //add new shape
         upNextTetrominoes[nextRandom].forEach( index => {
             displaySquares[displayIndex + index].classList.add("tetromino");
             displaySquares[displayIndex + index].style.backgroundColor = colors[randNum];
