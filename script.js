@@ -225,14 +225,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 //clear line
                 row.forEach(index => {
-                    squares[index].classList.remove("taken", "tetromino");
+                    squares[index].classList.remove("taken");
+                    squares[index].classList.remove("tetromino");
                     squares[index].style.backgroundColor = "";
-
                 })
                 const squaresRemoved = squares.splice(i, width);
                 squares = squaresRemoved.concat(squares);
                 squares.forEach(cell => grid.appendChild(cell))
-
             }
         }
     }
