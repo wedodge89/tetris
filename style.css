@@ -5,9 +5,9 @@
 .grid {
     width: 200px;
     height: 400px;
-    background-color: yellow;
     display: flex;
     flex-wrap: wrap;
+    background-color: yellow;
 }
 
 .grid div {
@@ -20,12 +20,12 @@
 }
 
 .mini-grid {
+    margin-left: 50px;
     width: 80px;
     height: 80px;
     display: flex;
     flex-wrap: wrap;
     background-color: yellow;
-    margin-left: 50px;
 }
 
 .mini-grid div {

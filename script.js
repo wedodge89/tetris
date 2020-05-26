@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
         'purple',
         'green',
         'blue'
-    ]
+    ];
 
     // The Tetrominoes
-     const lTetromino = [
+    const lTetromino = [
         [1, width + 1, width * 2 + 1, 2],
         [width, width + 1, width * 2, width * 3],
         [1, width + 1, width * 2 + 1, width * 2],
@@ -59,8 +59,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     //randomly select a tetromino
     let randNum = Math.floor(Math.random() * theTetrominoes.length);
-    console.log(randNum);
-    
     let current = theTetrominoes[randNum][currentRotation];
 
     //draw the first rotation
@@ -108,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentPosition += width;
         draw();
         freeze();
-        randNum = nextRandNum
     }
 
     //freeze function
@@ -117,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             current.forEach(index => squares[currentPosition + index].classList.add("taken"));
             randNum = Math.floor(Math.random() * theTetrominoes.length);
             current = theTetrominoes[randNum][currentRotation];
+            nextRandNum = Math.floor(Math.random() * theTetrominoes.length);
             currentPosition = 4;
             draw();
             displayShape();
