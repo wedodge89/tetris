@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //add new shape
         upNextTetrominoes[nextRandNum].forEach( index => {
             displaySquares[displayIndex + index].classList.add("tetromino");
-            displaySquares[displayIndex + index].style.backgroundColor = colors[randNum];
+            displaySquares[displayIndex + index].style.backgroundColor = colors[nextRandNum];
         });
     };
 
